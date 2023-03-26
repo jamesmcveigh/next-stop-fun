@@ -1,19 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './StationComboBox.module.css';
+import stations from 'data/stations.json';
 
 const StationComboBox = () => {
   const [inputValue, setInputValue] = useState('');
-  const [stations, setStations] = useState([]);
   const [matchedStations, setMatchedStations] = useState([]);
-
-  useEffect(() => {
-    async function fetchStations() {
-      const response = await fetch('/api/stations');
-      const stationsJson = await response.json();
-      setStations(stationsJson);
-    }
-    fetchStations();
-  }, []);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const inputRef = useRef(null);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -21,7 +14,31 @@ const StationComboBox = () => {
     setMatchedStations(stations.filter((station) =>
       station.toLowerCase().includes(inputValue.toLowerCase())
     ));
+    setShowDropdown(true);
   };
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setShowDropdown(false);
+    }, 100);
+  };
+
+  const handleStationClick = (station) => {
+    setInputValue(station);
+    setShowDropdown(false);
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
 
   return (
     <div className={styles['station-combobox']}>
@@ -31,11 +48,15 @@ const StationComboBox = () => {
         id="station-input"
         value={inputValue}
         onChange={handleInputChange}
+        onBlur={handleBlur}
+        ref={inputRef}
       />
-      {matchedStations.length > 0 && (
+      {showDropdown && matchedStations.length > 0 && (
         <ul className={styles['station-list']}>
           {matchedStations.map((station) => (
-            <li key={station}>{station}</li>
+            <li key={station} onClick={() => handleStationClick(station)}>
+              {station}
+            </li>
           ))}
         </ul>
       )}

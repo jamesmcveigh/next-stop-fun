@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
-import FeedbackForm from "@components/FeedbackForm";
 import StationComboBox from '@components/StationComboBox';
 
 export default function Home() {
@@ -23,7 +22,6 @@ export default function Home() {
       <li><a href="#">Brighton</a></li>
       <li><a href="#">Bristol</a></li>
     </ul>
-        <FeedbackForm />
       </main>
       <Footer />
     </div>

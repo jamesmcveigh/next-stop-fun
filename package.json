@@ -12,8 +12,8 @@
     "url": "https://github.com/netlify-templates/nextjs-toolbox/issues"
   },
   "scripts": {
-    "dev": "netlify dev",
-    "build": "netlify build",
+    "dev": "next dev",
+    "build": "next build",
     "export": "next export"
   },
   "dependencies": {
