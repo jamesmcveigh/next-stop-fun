@@ -1,0 +1,27 @@
+.station-combobox {
+    position: relative;
+  }
+  
+  .station-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  
+  .station-list li {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .station-list li:hover {
+    background-color: #f2f2f2;
+  }

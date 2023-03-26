@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import FeedbackForm from "@components/FeedbackForm";
-import JokeBlock from "@components/JokeBlock";
+import StationComboBox from '@components/StationComboBox';
 
 export default function Home() {
   return (
@@ -14,16 +14,8 @@ export default function Home() {
 
       <main>
         <Header title="Next Stop Fun!" />
-        <h1>Find Nearby Attractions by Train</h1>
-    <form>
-      <label for="station">Select a Train Station:</label>
-      <select name="station" id="station">
-        <option value="london">London</option>
-        <option value="manchester">Manchester</option>
-        <option value="liverpool">Liverpool</option>
-      </select>
-      <button type="submit">Search</button>
-    </form>
+        <h2>Find Nearby Attractions by Train</h2>
+    <StationComboBox />
     <h2>Popular Stations</h2>
     <ul>
       <li><a href="#">London</a></li>
@@ -32,7 +24,6 @@ export default function Home() {
       <li><a href="#">Bristol</a></li>
     </ul>
         <FeedbackForm />
-        <JokeBlock />
       </main>
       <Footer />
     </div>
