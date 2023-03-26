@@ -2,6 +2,11 @@
   command = "npm run build"
   publish = ".next"
 
+[dev]
+  framework = "next"
+  command = "npm run dev"
+  targetPort = 3000
+
 [functions]
   node_bundler = "esbuild"
 
